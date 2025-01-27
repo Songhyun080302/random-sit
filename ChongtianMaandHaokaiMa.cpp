@@ -15,32 +15,31 @@ int main() {
         cin >> b[i];
     }
 
-    vector<int> count(N + 1, 0);  
+    vector<int> count(N + 1, 0);  // To store the number of operations resulting in exactly c cows checked
 
-     for (int l = 1; l <= N; l++) {
-        for (int r = l; r <= N; r++) {  
-            int checked = 0;  
+    // Step 1: Try all possible subarrays [l, r]
+    for (int l = 0; l < N; l++) {
+        for (int r = l; r < N; r++) {
+            int checked = 0;
 
-            for (int i = 0; i < l - 1; i++) {
-                if (a[i] == b[i]) {
+            // Step 2: Reversal of a[l:r], then count the number of cows that match
+            // Before reversal, the checked cows are counted.
+            vector<int> temp_a = a;  // Copy of array a to perform the reversal
+            reverse(temp_a.begin() + l, temp_a.begin() + r + 1);  // Reverse the subarray a[l:r]
+
+            // Count the number of checked cows
+            for (int i = 0; i < N; i++) {
+                if (temp_a[i] == b[i]) {
                     checked++;
                 }
             }
 
-            for (int i = l - 1, j = r - 1; i < r; i++, j--) {
-                if (a[j] == b[i]) {
-                    checked++;
-                }
-            }
-
-            for (int i = r; i < N; i++) {
-                if (a[i] == b[i]) {
-                    checked++;
-                }
-            }
+            // Increment the corresponding count of checked cows
             count[checked]++;
         }
     }
+
+    // Step 3: Output the result
     for (int i = 0; i <= N; i++) {
         cout << count[i] << endl;
     }
