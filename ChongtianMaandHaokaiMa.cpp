@@ -20,18 +20,17 @@ int main() {
         for (int r = l; r <= N; r++) {
             int checked = 0;
 
+            // 부분 배열 l부터 r까지를 역순으로 정렬했을 때 일치하는 요소의 개수를 세는 부분
             for (int i = 0; i < l - 1; i++) {
                 if (a[i] == b[i]) {
                     checked++;
                 }
             }
-
-            for (int i = l - 1, j = r - 1; i < j; i++, j--) {
+            for (int i = l - 1, j = r - 1; i < r; i++, j--) { // i < r 조건으로 변경
                 if (a[j] == b[i]) {
                     checked++;
                 }
             }
-
             for (int i = r; i < N; i++) {
                 if (a[i] == b[i]) {
                     checked++;
@@ -47,5 +46,4 @@ int main() {
     }
 
     return 0;
-}
 }
