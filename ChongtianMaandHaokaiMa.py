@@ -1,23 +1,21 @@
 def solve():
-    N = int(input())
-    a = list(map(int, input().split()))
+    N = int(input())  
+    a = list(map(int, input().split()))  
     b = list(map(int, input().split()))
+    checked_initial = [1 if a[i] == b[i] else 0 for i in range(N)]
     
-    result = [0] * (N + 1)
-    left, right = 0, 0
-    matched_count = 0
-    while right < N:
-        
-        if a[left] == b[right]:
-            matched_count += 1
-        right += 1
+  result = [0] * (N + 1)
+    
 
-        if right - left > N:
-            if a[left] == b[right - N]:
-                matched_count -= 1
-            left += 1
-
-        result[matched_count] += 1
-
+    for l in range(N):
+        current_checked = checked_initial[:]
+        for r in range(l, N):
+           
+            current_checked[l:r+1] = reversed(current_checked[l:r+1])
+            
+            checked_count = sum(current_checked)
+            result[checked_count] += 1
+    
     for count in result:
         print(count)
+
