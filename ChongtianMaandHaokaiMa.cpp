@@ -20,21 +20,18 @@ int main() {
         for (int r = l; r <= N; r++) {
             int checked = 0;
 
-            // Count checked cows before the subarray
             for (int i = 0; i < l - 1; i++) {
                 if (a[i] == b[i]) {
                     checked++;
                 }
             }
 
-            // Count checked cows within the subarray (after reversal)
-            for (int i = l - 1, j = r - 1; i < r; i++, j--) { 
+            for (int i = l - 1, j = r - 1; i < j; i++, j--) {
                 if (a[j] == b[i]) {
                     checked++;
                 }
             }
 
-            // Count checked cows after the subarray
             for (int i = r; i < N; i++) {
                 if (a[i] == b[i]) {
                     checked++;
@@ -50,4 +47,5 @@ int main() {
     }
 
     return 0;
+}
 }
