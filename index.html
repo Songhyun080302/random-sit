@@ -1,22 +1,23 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자리 배치</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="controls">
-        <input type="text" id="seatNumbers" placeholder="자리 번호들 (예: 50, 51)">
-        <input type="text" id="seatValues" placeholder="배정할 숫자들 (예: 1, 2)">
-        <button id="submitSpecificRandom">무작위 자리 배정</button>
-        <button id="submitRandom">나머지 랜덤 배정</button>
-        <button id="resetBtn">초기화</button>
-    </div>
-    <div class="container">
-        <!-- 자리들이 여기에 생성됨 -->
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+def solve():
+    N = int(input())
+    a = list(map(int, input().split()))  
+    b = list(map(int, input().split()))  
+
+    result = [0] * (N + 1)
+
+    for l in range(N):
+        for r in range(l, N):
+            checked_cows = 0
+            for i in range(N):
+                if l <= i <= r:
+                    # 반전된 부분
+                    if a[l + r - i] == b[i]:
+                        checked_cows += 1
+                else:
+                    if a[i] == b[i]:
+                        checked_cows += 
+            result[checked_cows] += 1
+    
+    for count in result:
+        print(count)
+
